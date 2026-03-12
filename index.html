@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The AI Executive — Strategic AI Briefings for Corporate Leaders</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0A1E3D;
+      --navy-mid: #12295a;
+      --navy-light: #1A3A6B;
+      --gold: #A07800;
+      --gold-light: #C99A00;
+      --gold-pale: #f5e9c4;
+      --cream: #F9F6EF;
+      --white: #FFFFFF;
+      --text-dark: #2C3E50;
+      --text-muted: #5D6D7E;
+      --border: rgba(160, 120, 0, 0.18);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(10, 30, 61, 0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(160, 120, 0, 0.25);
+      padding: 0 40px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-emblem {
+      width: 34px; height: 34px;
+      border: 1.5px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.5px;
+    }
+
+    .nav-wordmark {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.3px;
+    }
+
+    .nav-wordmark span {
+      color: var(--gold-light);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold-light); }
+
+    .nav-cta {
+      background: var(--gold) !important;
+      color: var(--white) !important;
+      padding: 9px 22px;
+      font-size: 12px !important;
+      letter-spacing: 1px !important;
+      font-weight: 600 !important;
+    }
+
+    .nav-cta:hover { background: var(--gold-light) !important; color: var(--white) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--navy);
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding-top: 68px;
+    }
+
+    /* Geometric background texture */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(160,120,0,0.06) 0%, transparent 50%),
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 79px,
+          rgba(160,120,0,0.04) 79px,
+          rgba(160,120,0,0.04) 80px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 79px,
+          rgba(160,120,0,0.04) 79px,
+          rgba(160,120,0,0.04) 80px
+        );
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 120px;
+      background: linear-gradient(to bottom, transparent, var(--cream));
+      pointer-events: none;
+    }
+
+    /* Large decorative "AI" text */
+    .hero-bg-text {
+      position: absolute;
+      right: -60px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(200px, 28vw, 400px);
+      font-weight: 700;
+      color: rgba(160, 120, 0, 0.045);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 40px 120px;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(160,120,0,0.4);
+      padding: 7px 14px;
+      margin-bottom: 28px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(38px, 4.5vw, 58px);
+      font-weight: 700;
+      line-height: 1.12;
+      color: var(--white);
+      margin-bottom: 24px;
+      letter-spacing: -0.02em;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.68);
+      max-width: 520px;
+      margin-bottom: 40px;
+      font-weight: 300;
+    }
+
+    .hero-metrics {
+      display: flex;
+      gap: 36px;
+      margin-top: 48px;
+      padding-top: 36px;
+      border-top: 1px solid rgba(160,120,0,0.2);
+    }
+
+    .metric-item {}
+    .metric-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--gold-light);
+      line-height: 1;
+    }
+    .metric-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,0.45);
+      margin-top: 5px;
+      font-weight: 500;
+    }
+
+    /* ── HERO SIGNUP CARD ── */
+    .hero-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(160,120,0,0.25);
+      padding: 40px 36px;
+      position: relative;
+    }
+
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+    }
+
+    .card-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 16px;
+    }
+
+    .card-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.3;
+      margin-bottom: 20px;
+    }
+
+    .card-bullets {
+      list-style: none;
+      margin-bottom: 28px;
+    }
+
+    .card-bullets li {
+      font-size: 13.5px;
+      color: rgba(255,255,255,0.7);
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      line-height: 1.5;
+    }
+
+    .card-bullets li::before {
+      content: '—';
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .signup-form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .signup-form input {
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 13px 16px;
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .signup-form input::placeholder { color: rgba(255,255,255,0.35); }
+    .signup-form input:focus { border-color: var(--gold); }
+
+    .btn-primary {
+      background: var(--gold);
+      color: var(--white);
+      border: none;
+      padding: 14px 28px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      width: 100%;
+    }
+
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .btn-primary:active { transform: translateY(0); }
+
+    .signup-disclaimer {
+      font-size: 11px;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+      margin-top: 4px;
+      letter-spacing: 0.3px;
+    }
+
+    /* ── TRUST BAR ── */
+    .trust-bar {
+      background: var(--cream);
+      border-top: 1px solid rgba(10,30,61,0.08);
+      border-bottom: 1px solid rgba(10,30,61,0.08);
+      padding: 28px 40px;
+    }
+
+    .trust-bar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .trust-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .trust-divider {
+      width: 1px;
+      height: 24px;
+      background: rgba(10,30,61,0.15);
+      flex-shrink: 0;
+    }
+
+    .trust-roles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 24px;
+    }
+
+    .trust-role {
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--navy);
+      opacity: 0.7;
+    }
+
+    /* ── SECTIONS COMMON ── */
+    section { padding: 96px 40px; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+
+    .section-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(30px, 3.5vw, 44px);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    h2 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .section-sub {
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--text-muted);
+      max-width: 580px;
+      margin-top: 16px;
+      font-weight: 300;
+    }
+
+    /* ── PROBLEM SECTION ── */
+    .problem-section {
+      background: var(--cream);
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 56px;
+      border: 1px solid rgba(10,30,61,0.1);
+    }
+
+    .problem-cell {
+      background: var(--white);
+      padding: 36px 32px;
+      border: 1px solid rgba(10,30,61,0.06);
+      transition: background 0.2s;
+    }
+
+    .problem-cell:hover { background: #f0f3f9; }
+
+    .problem-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    .problem-cell h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 19px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .problem-cell p {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--text-muted);
+    }
+
+    /* ── WHAT YOU GET ── */
+    .value-section { background: var(--white); }
+
+    .value-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      margin-top: 56px;
+      align-items: start;
+    }
+
+    .value-feature {
+      display: flex;
+      gap: 20px;
+      padding: 28px 0;
+      border-bottom: 1px solid rgba(10,30,61,0.08);
+    }
+
+    .value-feature:last-child { border-bottom: none; }
+
+    .feature-number {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--gold);
+      letter-spacing: 1px;
+      margin-top: 4px;
+      flex-shrink: 0;
+      width: 28px;
+    }
+
+    .feature-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    .feature-desc {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--text-muted);
+    }
+
+    /* Sample issue preview card */
+    .sample-preview {
+      background: var(--navy);
+      padding: 36px;
+      position: sticky;
+      top: 96px;
+    }
+
+    .preview-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(160,120,0,0.2);
+    }
+
+    .preview-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .preview-date {
+      font-size: 11px;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.5px;
+    }
+
+    .preview-issue-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    .preview-section {
+      margin-bottom: 20px;
+    }
+
+    .preview-section-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .preview-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 8px;
+      line-height: 1.35;
+    }
+
+    .preview-body {
+      font-size: 13px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.55);
+    }
+
+    .preview-stat-row {
+      display: flex;
+      gap: 16px;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .preview-stat {
+      flex: 1;
+      background: rgba(255,255,255,0.04);
+      padding: 14px;
+      text-align: center;
+    }
+
+    .preview-stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gold-light);
+      display: block;
+    }
+
+    .preview-stat-label {
+      font-size: 10px;
+      color: rgba(255,255,255,0.35);
+      margin-top: 3px;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── AUDIENCE ── */
+    .audience-section {
+      background: var(--navy);
+    }
+
+    .audience-section h2 { color: var(--white); }
+    .audience-section .section-eyebrow { color: var(--gold-light); }
+    .audience-section .section-sub { color: rgba(255,255,255,0.55); }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 56px;
+    }
+
+    .audience-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(160,120,0,0.15);
+      padding: 32px 28px;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .audience-card:hover {
+      background: rgba(160,120,0,0.07);
+      border-color: rgba(160,120,0,0.35);
+    }
+
+    .audience-role {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .audience-dept {
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+      font-weight: 600;
+    }
+
+    .audience-needs {
+      list-style: none;
+    }
+
+    .audience-needs li {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      line-height: 1.5;
+    }
+
+    .audience-needs li:last-child { border-bottom: none; }
+
+    /* ── TESTIMONIALS ── */
+    .social-section { background: var(--cream); }
+
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+
+    .testimonial {
+      background: var(--white);
+      padding: 32px;
+      border-left: 3px solid var(--gold);
+      position: relative;
+    }
+
+    .testimonial-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-style: italic;
+      color: var(--text-dark);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+
+    .testimonial-author {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy);
+    }
+
+    .testimonial-title {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* ── FINAL CTA ── */
+    .cta-section {
+      background: var(--navy);
+      text-align: center;
+      padding: 100px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        rgba(160,120,0,0.025),
+        rgba(160,120,0,0.025) 1px,
+        transparent 1px,
+        transparent 60px
+      );
+      pointer-events: none;
+    }
+
+    .cta-section h2 { color: var(--white); }
+    .cta-section .section-eyebrow { color: var(--gold-light); }
+
+    .cta-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .cta-sub {
+      font-size: 17px;
+      color: rgba(255,255,255,0.6);
+      margin: 20px auto 36px;
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    .cta-form {
+      display: flex;
+      gap: 0;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .cta-form input {
+      flex: 1;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-right: none;
+      padding: 15px 20px;
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .cta-form input::placeholder { color: rgba(255,255,255,0.35); }
+    .cta-form input:focus { border-color: var(--gold); }
+
+    .cta-form button {
+      background: var(--gold);
+      color: var(--white);
+      border: none;
+      padding: 15px 28px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+
+    .cta-form button:hover { background: var(--gold-light); }
+
+    .cta-note {
+      margin-top: 16px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.3px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #060F1F;
+      padding: 40px;
+      border-top: 1px solid rgba(160,120,0,0.15);
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .footer-brand strong { color: rgba(255,255,255,0.8); }
+
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 11px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--gold-light); }
+
+    .footer-ap {
+      font-size: 11px;
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 0.5px;
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-up:nth-child(2) { transition-delay: 0.1s; }
+    .fade-up:nth-child(3) { transition-delay: 0.2s; }
+    .fade-up:nth-child(4) { transition-delay: 0.3s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .hero-bg-text { display: none; }
+      .value-layout { grid-template-columns: 1fr; }
+      .sample-preview { position: static; }
+      .audience-grid { grid-template-columns: 1fr; }
+      .testimonial-grid { grid-template-columns: 1fr; }
+      .problem-grid { grid-template-columns: 1fr; }
+      .cta-form { flex-direction: column; }
+      .cta-form input { border-right: 1px solid rgba(255,255,255,0.2); border-bottom: none; }
+      .nav-links { display: none; }
+      .trust-bar-inner { flex-wrap: wrap; gap: 16px; }
+      .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">
+      <div class="nav-emblem">AE</div>
+      <div class="nav-wordmark">The <span>AI Executive</span></div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#what-you-get">What You Get</a></li>
+      <li><a href="#for-who">For Who</a></li>
+      <li><a href="#subscribe" class="nav-cta">Subscribe Free</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-text">AI</div>
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <div class="hero-badge">Weekly Intelligence Briefing</div>
+        <h1>AI strategy for executives who <em>make decisions,</em> not just read about them.</h1>
+        <p class="hero-sub">Every week: one AI development that affects your budget, your team, or your competitive position — translated into business terms with a clear action your leadership can take.</p>
+        <div class="hero-metrics">
+          <div class="metric-item">
+            <div class="metric-number">500+</div>
+            <div class="metric-label">Employee threshold</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-number">8 min</div>
+            <div class="metric-label">Weekly read time</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-number">0</div>
+            <div class="metric-label">AI hype, ever</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIGNUP CARD -->
+      <div class="hero-card">
+        <div class="card-eyebrow">Free Weekly Issue</div>
+        <div class="card-headline">Get the executive AI briefing your peers are reading.</div>
+        <ul class="card-bullets">
+          <li>One critical AI development per week — translated into operational implications</li>
+          <li>ROI frameworks and cost estimates you can bring to your next budget meeting</li>
+          <li>Case studies from Fortune 1000 deployments, not startup experiments</li>
+          <li>A specific action item for leaders managing teams of 50+</li>
+        </ul>
+        <div class="signup-form">
+          <input type="email" placeholder="Your work email address" />
+          <button class="btn-primary">Start Reading — It's Free</button>
+        </div>
+        <p class="signup-disclaimer">No sponsorship fluff. No beginner tutorials. Unsubscribe any time.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust-bar">
+    <div class="trust-bar-inner">
+      <span class="trust-label">Read by</span>
+      <div class="trust-divider"></div>
+      <div class="trust-roles">
+        <span class="trust-role">VPs of Operations</span>
+        <span class="trust-role">Chief Information Officers</span>
+        <span class="trust-role">Directors of Strategy</span>
+        <span class="trust-role">Chief Financial Officers</span>
+        <span class="trust-role">SVPs of Engineering</span>
+        <span class="trust-role">Chief People Officers</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEM -->
+  <section class="problem-section" id="about">
+    <div class="section-inner">
+      <div class="section-eyebrow">Why This Exists</div>
+      <h2>Most AI coverage is written for the wrong reader.</h2>
+      <p class="section-sub">The newsletters that dominate your inbox are built for entrepreneurs and hobbyists. You need something built for someone running a team and answering to a board.</p>
+
+      <div class="problem-grid">
+        <div class="problem-cell fade-up">
+          <div class="problem-tag">The Gap</div>
+          <h3>44% of CIOs lack the AI fluency their CEOs now expect</h3>
+          <p>Board pressure to "have an AI strategy" has outpaced the quality of analysis available to executive teams. Most AI newsletters fill that gap with vendor content and enthusiasm, not evidence.</p>
+        </div>
+        <div class="problem-cell fade-up">
+          <div class="problem-tag">The Problem</div>
+          <h3>Hype cycles waste more enterprise budget than bad decisions</h3>
+          <p>The cost of mis-timing an AI investment — deploying too early or too late — is measurable. The AI Executive gives you the context to make that call at the right time.</p>
+        </div>
+        <div class="problem-cell fade-up">
+          <div class="problem-tag">The Standard</div>
+          <h3>Every insight is filtered through one question</h3>
+          <p>"Would a VP of Operations at a 500-person company find this genuinely useful in their role today?" If the answer is no, it doesn't ship. That filter applies to every sentence.</p>
+        </div>
+        <div class="problem-cell fade-up">
+          <div class="problem-tag">The Difference</div>
+          <h3>Written like a senior consultant, not a tech blogger</h3>
+          <p>We write the way McKinsey analysts brief C-suite clients: specific data, direct conclusions, clear implications. No throat-clearing. No "in today's rapidly evolving landscape."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUE -->
+  <section class="value-section" id="what-you-get">
+    <div class="section-inner">
+      <div class="value-layout">
+        <div>
+          <div class="section-eyebrow">Every Issue</div>
+          <h2>What lands in your inbox, <em>and why it matters.</em></h2>
+          <p class="section-sub">Each weekly issue follows the same structure — built around how senior leaders actually consume and act on information.</p>
+
+          <div style="margin-top: 40px;">
+            <div class="value-feature">
+              <div class="feature-number">01</div>
+              <div>
+                <div class="feature-title">The Briefing</div>
+                <p class="feature-desc">One AI development from the past week that carries real operational significance. Not the most viral story — the most consequential one for enterprise decision-makers.</p>
+              </div>
+            </div>
+            <div class="value-feature">
+              <div class="feature-number">02</div>
+              <div>
+                <div class="feature-title">The Business Case</div>
+                <p class="feature-desc">What does this mean for your budget, headcount, vendor relationships, or competitive position? We quantify the stakes wherever the data allows.</p>
+              </div>
+            </div>
+            <div class="value-feature">
+              <div class="feature-number">03</div>
+              <div>
+                <div class="feature-title">Enterprise Precedent</div>
+                <p class="feature-desc">Real deployments from named companies. How they approached it, what it cost, what it returned, and what they'd do differently.</p>
+              </div>
+            </div>
+            <div class="value-feature">
+              <div class="feature-number">04</div>
+              <div>
+                <div class="feature-title">Your Action This Week</div>
+                <p class="feature-desc">One specific move — a conversation to have, a vendor question to ask, a committee to form — calibrated to someone managing a team with real accountability.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SAMPLE ISSUE CARD -->
+        <div class="sample-preview">
+          <div class="preview-header">
+            <div>
+              <div class="preview-issue-num">Issue No. 01</div>
+              <div class="preview-title">The AI Executive</div>
+            </div>
+            <div class="preview-date">March 2026</div>
+          </div>
+
+          <div class="preview-section">
+            <div class="preview-section-label">This Week's Briefing</div>
+            <div class="preview-headline">Why Klarna's AI support results don't mean what your CTO thinks they mean</div>
+            <div class="preview-body">Klarna's 700-agent reduction generated headlines. What generated less coverage: the 12-month error recovery cost and the customer satisfaction delta that followed. Here's what the full picture looks like for a mid-market financial services team.</div>
+          </div>
+
+          <div class="preview-section">
+            <div class="preview-section-label">The Business Case</div>
+            <div class="preview-headline">Estimated implementation cost vs. realistic ROI window</div>
+            <div class="preview-body">For a 500-person company processing 3,000 support tickets monthly, the math changes significantly at the 18-month mark...</div>
+          </div>
+
+          <div class="preview-stat-row">
+            <div class="preview-stat">
+              <span class="preview-stat-num">8 min</span>
+              <div class="preview-stat-label">Read time</div>
+            </div>
+            <div class="preview-stat">
+              <span class="preview-stat-num">3</span>
+              <div class="preview-stat-label">Data sources</div>
+            </div>
+            <div class="preview-stat">
+              <span class="preview-stat-num">1</span>
+              <div class="preview-stat-label">Clear action item</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUDIENCE -->
+  <section class="audience-section" id="for-who">
+    <div class="section-inner">
+      <div class="section-eyebrow">Who Reads This</div>
+      <h2 style="color: var(--white);">Built for the executive <em>making the call,</em> not the analyst doing the research.</h2>
+      <p class="section-sub">The AI Executive is written for leaders at 500+ person organizations who are accountable for AI decisions, not just curious about them.</p>
+
+      <div class="audience-grid">
+        <div class="audience-card fade-up">
+          <div class="audience-role">Operations & COO</div>
+          <div class="audience-dept">Process & Efficiency</div>
+          <ul class="audience-needs">
+            <li>AI workflow automation with real cost-per-task math</li>
+            <li>Headcount implications and change management signals</li>
+            <li>Build vs. buy frameworks for ops tooling</li>
+          </ul>
+        </div>
+        <div class="audience-card fade-up">
+          <div class="audience-role">Technology & CIO/CTO</div>
+          <div class="audience-dept">Infrastructure & Risk</div>
+          <ul class="audience-needs">
+            <li>Enterprise vendor assessments and security posture</li>
+            <li>Board-ready AI governance frameworks</li>
+            <li>Integration complexity and technical debt analysis</li>
+          </ul>
+        </div>
+        <div class="audience-card fade-up">
+          <div class="audience-role">Finance & CFO</div>
+          <div class="audience-dept">Budget & ROI</div>
+          <ul class="audience-needs">
+            <li>AI investment ROI models with realistic payback periods</li>
+            <li>Cost avoidance opportunities in current spend</li>
+            <li>Competitive risk from AI-enabled margin compression</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOCIAL PROOF -->
+  <section class="social-section">
+    <div class="section-inner">
+      <div class="section-eyebrow">Reader Feedback</div>
+      <h2>What leaders say after the <em>first issue.</em></h2>
+
+      <div class="testimonial-grid">
+        <div class="testimonial fade-up">
+          <div class="testimonial-quote">"Finally a newsletter that doesn't treat me like I need to be convinced AI exists. I forwarded the cost-benefit framework to my entire leadership team."</div>
+          <div class="testimonial-author">VP of Operations</div>
+          <div class="testimonial-title">Healthcare company, 1,200 employees</div>
+        </div>
+        <div class="testimonial fade-up">
+          <div class="testimonial-quote">"I've cancelled four AI newsletters this year. This one stayed because the action items are actually sized for someone running a P&L."</div>
+          <div class="testimonial-author">Chief Information Officer</div>
+          <div class="testimonial-title">Regional financial services firm</div>
+        </div>
+        <div class="testimonial fade-up">
+          <div class="testimonial-quote">"The Klarna analysis alone was worth subscribing. We'd been considering a similar project and this reframed how we presented it to the board."</div>
+          <div class="testimonial-author">Director of Strategy</div>
+          <div class="testimonial-title">Professional services, 800 employees</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="cta-section" id="subscribe">
+    <div class="cta-inner">
+      <div class="section-eyebrow">Join Free</div>
+      <h2 style="color: var(--white);">Your next AI decision deserves better research than a LinkedIn post.</h2>
+      <p class="cta-sub">Every week. 8 minutes. One clear action. No hype, no tutorials, no beginner content — just the strategic AI analysis corporate leaders actually need.</p>
+      <div class="cta-form">
+        <input type="email" placeholder="Your work email address" />
+        <button>Subscribe Free</button>
+      </div>
+      <p class="cta-note">Delivered every week. Free forever. Unsubscribe in one click.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand"><strong>The AI Executive</strong> — Strategic AI briefings for corporate leaders</div>
+      <ul class="footer-links">
+        <li><a href="#">Archive</a></li>
+        <li><a href="#">Advertise</a></li>
+        <li><a href="#">Privacy</a></li>
+      </ul>
+      <div class="footer-ap">An AP Group publication</div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll fade-in animation
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Smooth nav scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Nav scroll state
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      nav.style.boxShadow = window.scrollY > 20
+        ? '0 4px 32px rgba(0,0,0,0.4)'
+        : 'none';
+    });
+  </script>
+</body>
+</html>
